@@ -1,7 +1,7 @@
 package com.evgenii.jsevaluator;
 
 import android.content.Context;
-import android.support.annotation.VisibleForTesting;
+//import android.support.annotation.VisibleForTesting;
 import android.webkit.WebView;
 
 import com.evgenii.jsevaluator.interfaces.CallJavaResultInterface;
@@ -115,17 +115,17 @@ public class JsEvaluator implements CallJavaResultInterface, JsEvaluatorInterfac
 		});
 	}
 
-	@VisibleForTesting
+//	@VisibleForTesting
 	public void setHandler(HandlerWrapperInterface handlerWrapperInterface) {
 		mHandler = handlerWrapperInterface;
 	}
 
-	@VisibleForTesting
+//	@VisibleForTesting
 	public void setWebViewWrapper(WebViewWrapperInterface webViewWrapper) {
 		mWebViewWrapper = webViewWrapper;
 	}
 
-	@VisibleForTesting
+//	@VisibleForTesting
 	public JsCallback getCallback() {
 		return callback.get();
 	}

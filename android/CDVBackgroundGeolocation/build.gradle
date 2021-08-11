@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply from: '../common/VERSIONS.gradle'
 
 android {
-    compileSdkVersion project.ext.getCompileSdkVersion()
-    buildToolsVersion project.ext.getBuildToolsVersion()
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        minSdkVersion project.ext.getMinSdkVersion()
-        targetSdkVersion project.ext.getTargetSdkVersion()
+        minSdkVersion 26
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
@@ -25,10 +25,10 @@ android {
 }
 
 dependencies {
-    testCompile testLibs.junit
-    testCompile testLibs.robolectric
-    compile libs.slf4j
-    compile project(':CordovaLib')
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(path: ':common')
+    testImplementation testLibs.junit
+    testImplementation testLibs.robolectric
+    implementation libs.slf4j
+    implementation project(':CordovaLib')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':common')
 }
