@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply from: '../common/VERSIONS.gradle'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion project.ext.getCompileSdkVersion()
+    buildToolsVersion project.ext.getBuildToolsVersion()
 
     defaultConfig {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        minSdkVersion 26
-        targetSdkVersion 30
+        minSdkVersion project.ext.getMinSdkVersion()
+        targetSdkVersion project.ext.getTargetSdkVersion()
         versionCode 1
         versionName "1.0"
     }
