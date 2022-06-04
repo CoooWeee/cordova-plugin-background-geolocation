@@ -41,7 +41,7 @@
   "author": "",
   "license": "Apache-2.0",
   "scripts": {
-    "android": "cd android && ./gradlew build --exclude-task test -i && cd .."
+    "android": "cd android && ./gradlew clean build --exclude-task test -i && cd .."
   },
   "bugs": {
     "url": "https://github.com/CoooWeee/cordova-plugin-background-geolocation/issues"
