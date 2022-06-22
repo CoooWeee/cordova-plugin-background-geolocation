@@ -35,7 +35,7 @@ buildscript {
     dependencies {
         // The gradle plugin and the maven plugin have to be updated after each version of Android
         // studio comes out
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.0.4'
 //        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
@@ -58,8 +58,8 @@ android {
     buildToolsVersion cdvBuildToolsVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     // For the Android Cordova Lib, we allow changing the minSdkVersion, but it is at the users own risk
