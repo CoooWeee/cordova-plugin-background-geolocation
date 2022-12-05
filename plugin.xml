@@ -101,7 +101,6 @@
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/service/LocationServiceProxy.java" target-dir="src/com/marianhello/bgloc/service" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/AccountHelper.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/Authenticator.java" target-dir="src/com/marianhello/bgloc/sync" />
-    <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/AuthenticatorService.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/BatchManager.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/NotificationHelper.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/SyncAdapter.java" target-dir="src/com/marianhello/bgloc/sync" />
@@ -134,12 +133,6 @@
           <action android:name="android.content.SyncAdapter"/>
         </intent-filter>
         <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/syncadapter" />
-      </service>
-      <service android:name="com.marianhello.bgloc.sync.AuthenticatorService">
-        <intent-filter>
-          <action android:name="android.accounts.AccountAuthenticator"/>
-        </intent-filter>
-        <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
       </service>
       <provider android:name="com.marianhello.bgloc.data.provider.LocationContentProvider" android:authorities="@string/mauron85_bgloc_content_authority" android:exported="false" android:syncable="true"/>
       <service android:enabled="true" android:exported="false" android:name="com.marianhello.bgloc.service.LocationServiceImpl" android:foregroundServiceType="location" />
