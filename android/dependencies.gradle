@@ -1,4 +1,5 @@
 dependencies {
+    implementation "com.android.support:appcompat-v7:26+"
     // logback
     implementation 'com.github.tony19:logback-android:1.1.1-9'
     implementation 'org.slf4j:slf4j-api:1.7.21'

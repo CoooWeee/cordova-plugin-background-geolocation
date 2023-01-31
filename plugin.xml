@@ -27,9 +27,6 @@
     <preference name="ANDROID_SUPPORT_LIBRARY_VERSION" default="26+"/>
     <preference name="ICON" default="@mipmap/icon" />
     <preference name="SMALL_ICON" default="@mipmap/icon" />
-    <preference name="ACCOUNT_NAME" default="@string/app_name" />
-    <preference name="ACCOUNT_LABEL" default="@string/app_name" />
-    <preference name="ACCOUNT_TYPE" default="$PACKAGE_NAME.account" />
     <preference name="CONTENT_AUTHORITY" default="$PACKAGE_NAME" />
 
     <framework src="com.google.android.gms:play-services-location:$GOOGLE_PLAY_SERVICES_VERSION" />
@@ -100,7 +97,6 @@
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/service/LocationService.java" target-dir="src/com/marianhello/bgloc/service" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/service/LocationServiceProxy.java" target-dir="src/com/marianhello/bgloc/service" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/AccountHelper.java" target-dir="src/com/marianhello/bgloc/sync" />
-    <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/Authenticator.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/BatchManager.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/NotificationHelper.java" target-dir="src/com/marianhello/bgloc/sync" />
     <source-file src="android/common/src/main/java/com/marianhello/bgloc/sync/SyncAdapter.java" target-dir="src/com/marianhello/bgloc/sync" />
@@ -114,8 +110,6 @@
     <source-file src="android/common/src/main/java/com/marianhello/utils/TextUtils.java" target-dir="src/com/marianhello/utils" />
     <source-file src="android/common/src/main/java/com/marianhello/utils/ToneGenerator.java" target-dir="src/com/marianhello/utils" />
     <source-file src="android/common/src/main/java/com/tenforwardconsulting/bgloc/DistanceFilterLocationProvider.java" target-dir="src/com/tenforwardconsulting/bgloc" />
-    <source-file src="android/common/src/main/java/org/apache/commons/io/Charsets.java" target-dir="src/org/apache/commons/io" />
-    <source-file src="android/common/src/main/java/org/apache/commons/io/input/ReversedLinesFileReader.java" target-dir="src/org/apache/commons/io/input" />
     <source-file src="android/common/src/main/java/org/chromium/content/browser/ThreadUtils.java" target-dir="src/org/chromium/content/browser" />
     <source-file src="android/common/src/main/java/ru/andremoniy/sqlbuilder/SqlExpression.java" target-dir="src/ru/andremoniy/sqlbuilder" />
     <source-file src="android/common/src/main/java/ru/andremoniy/sqlbuilder/SqlSelectStatement.java" target-dir="src/ru/andremoniy/sqlbuilder" />
@@ -166,17 +160,9 @@
 
     <config-file target="res/values/strings.xml" parent="/resources">
       <string name="mauron85_bgloc_account_name">$ACCOUNT_NAME</string>
-      <string name="mauron85_bgloc_account_type">$ACCOUNT_TYPE</string>
       <string name="mauron85_bgloc_content_authority">$CONTENT_AUTHORITY</string>
     </config-file>
 
-    <edit-config file="res/xml/authenticator.xml" target="/*" mode="overwrite">
-      <account-authenticator xmlns:android="http://schemas.android.com/apk/res/android" android:accountType="@string/mauron85_bgloc_account_type" android:icon="$ICON" android:smallIcon="$SMALL_ICON" android:label="$ACCOUNT_LABEL"/>
-    </edit-config>
-
-    <edit-config file="res/xml/syncadapter.xml" target="/*" mode="overwrite">
-      <sync-adapter xmlns:android="http://schemas.android.com/apk/res/android" android:contentAuthority="@string/mauron85_bgloc_content_authority" android:accountType="@string/mauron85_bgloc_account_type" android:userVisible="false" android:supportsUploading="true" android:allowParallelSyncs="false" android:isAlwaysSyncable="true"/>
-    </edit-config>
   </platform>
 
   <platform name="ios">
@@ -300,6 +286,18 @@
     <source-file src="ios/common/BackgroundGeolocation/SOMotionDetector/SOMotionDetector.m" />
     <header-file src="ios/common/BackgroundGeolocation/SOMotionDetector/SOStepDetector.h" />
     <source-file src="ios/common/BackgroundGeolocation/SOMotionDetector/SOStepDetector.m" />
+    <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/ext/NSString+ZIMString.h" />
+    <source-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/ext/NSString+ZIMString.m" />
+    <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlDataManipulationCommand.h" />
+    <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlExpression.h" />
+    <source-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlExpression.m" />
+    <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlSelectStatement.h" />
+    <source-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlSelectStatement.m" />
+    <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlStatement.h" />
+    <!-- End of generated sources -->
+  </platform>
+</plugin>
+tor/SOStepDetector.m" />
     <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/ext/NSString+ZIMString.h" />
     <source-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/ext/NSString+ZIMString.m" />
     <header-file src="ios/common/BackgroundGeolocation/SQLQueryBuilder/sql/ZIMSqlDataManipulationCommand.h" />
