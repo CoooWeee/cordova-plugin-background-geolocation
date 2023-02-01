@@ -3,7 +3,18 @@
 // Definitions by: Mauron85 (@mauron85), Norbert Györög (@djereg)
 // Definitions: https://github.com/mauron85/cordova-plugin-background-geolocation/blob/master/www/BackgroundGeolocation.d.ts
 
-type Event = 'location' | 'stationary' | 'activity' | 'start' | 'stop' | 'error' | 'authorization' | 'foreground' | 'background' | 'abort_requested' | 'http_authorization';
+type Event =
+  | 'location'
+  | 'stationary'
+  | 'activity'
+  | 'start'
+  | 'stop'
+  | 'error'
+  | 'authorization'
+  | 'foreground'
+  | 'background'
+  | 'abort_requested'
+  | 'http_authorization';
 type HeadlessTaskEventName = 'location' | 'stationary' | 'activity';
 type iOSActivityType = 'AutomotiveNavigation' | 'OtherNavigation' | 'Fitness' | 'Other';
 type NativeProvider = 'gps' | 'network' | 'passive' | 'fused';
@@ -371,7 +382,7 @@ export interface Location {
 }
 
 export interface StationaryLocation extends Location {
-  radius: number
+  radius: number;
 }
 
 export interface LocationError {
@@ -456,7 +467,6 @@ export interface HeadlessTaskEvent {
 }
 
 export interface BackgroundGeolocationPlugin {
-
   DISTANCE_FILTER_PROVIDER: LocationProvider;
   ACTIVITY_PROVIDER: LocationProvider;
   RAW_PROVIDER: LocationProvider;
@@ -493,11 +503,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  configure(
-    options: ConfigureOptions,
-    success?: () => void,
-    fail?: () => void
-  ): void;
+  configure(options: ConfigureOptions, success?: () => void, fail?: () => void): void;
 
   /**
    * Start background geolocation.
@@ -523,7 +529,7 @@ export interface BackgroundGeolocationPlugin {
   getCurrentLocation(
     success: (location: Location) => void,
     fail?: (error: LocationError) => void | null,
-    options?: LocationOptions
+    options?: LocationOptions,
   ): void;
 
   /**
@@ -545,10 +551,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  checkStatus(
-    success: (status: ServiceStatus) => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  checkStatus(success: (status: ServiceStatus) => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Show app settings to allow change of app location permissions.
@@ -574,10 +577,7 @@ export interface BackgroundGeolocationPlugin {
    * @param fail
    * @see {@link https://github.com/mauron85/react-native-background-geolocation#getlocationssuccess-fail|Docs}
    */
-  getLocations(
-    success: (locations: Location[]) => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  getLocations(success: (locations: Location[]) => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Method will return locations which have not yet been posted to server.
@@ -586,10 +586,7 @@ export interface BackgroundGeolocationPlugin {
    * @param fail
    * @see {@link https://github.com/mauron85/react-native-background-geolocation#getvalidlocationssuccess-fail|Docs}
    */
-  getValidLocations(
-    success: (location: Location[]) => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  getValidLocations(success: (location: Location[]) => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Delete location by locationId.
@@ -600,11 +597,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  deleteLocation(
-    locationId: number,
-    success?: () => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  deleteLocation(locationId: number, success?: () => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Delete all stored locations.
@@ -617,10 +610,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  deleteAllLocations(
-    success?: () => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  deleteAllLocations(success?: () => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Switch plugin operation mode,
@@ -637,11 +627,7 @@ export interface BackgroundGeolocationPlugin {
    * // switch to BACKGROUND mode
    * BackgroundGeolocation.switchMode(BackgroundGeolocation.BACKGROUND_MODE);
    */
-  switchMode(
-    modeId: ServiceMode,
-    success?: () => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  switchMode(modeId: ServiceMode, success?: () => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Force sync of pending locations.
@@ -652,10 +638,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  forceSync(
-    success?: () => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  forceSync(success?: () => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Get stored configuration options.
@@ -663,10 +646,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  getConfig(
-    success: (options: ConfigureOptions) => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  getConfig(success: (options: ConfigureOptions) => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Return all logged events. Useful for plugin debugging.
@@ -684,7 +664,7 @@ export interface BackgroundGeolocationPlugin {
     fromId: number,
     minLevel: LogLevel,
     success: (entries: LogEntry[]) => void,
-    fail?: (error: BackgroundGeolocationError) => void
+    fail?: (error: BackgroundGeolocationError) => void,
   ): void;
 
   /**
@@ -696,7 +676,6 @@ export interface BackgroundGeolocationPlugin {
    */
   removeAllListeners(event?: Event): void;
 
-
   /**
    * Start background task (iOS only)
    *
@@ -707,10 +686,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  startTask(
-    success: (taskKey: number) => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  startTask(success: (taskKey: number) => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * End background task indentified by taskKey (iOS only)
@@ -719,11 +695,7 @@ export interface BackgroundGeolocationPlugin {
    * @param success
    * @param fail
    */
-  endTask(
-    taskKey: number,
-    success?: () => void,
-    fail?: (error: BackgroundGeolocationError) => void
-  ): void;
+  endTask(taskKey: number, success?: () => void, fail?: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * A special task that gets executed when the app is terminated, but
@@ -746,9 +718,7 @@ export interface BackgroundGeolocationPlugin {
    *      return 'Processing event: ' + event.name; // will be logged
    *  });
    */
-  headlessTask(
-    task: (event: HeadlessTaskEvent) => void
-  ): void;
+  headlessTask(task: (event: HeadlessTaskEvent) => void): void;
 
   /**
    * Register location event listener.
@@ -756,10 +726,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'location',
-    callback: (location: Location) => void
-  ): void;
+  on(eventName: 'location', callback: (location: Location) => void): void;
 
   /**
    * Register stationary location event listener.
@@ -767,10 +734,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'stationary',
-    callback: (location: StationaryLocation) => void
-  ): void;
+  on(eventName: 'stationary', callback: (location: StationaryLocation) => void): void;
 
   /**
    * Register activity monitoring listener.
@@ -778,10 +742,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'activity',
-    callback: (activity: Activity) => void
-  ): void;
+  on(eventName: 'activity', callback: (activity: Activity) => void): void;
 
   /**
    * Register start event listener.
@@ -791,10 +752,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'start',
-    callback: () => void
-  ): void;
+  on(eventName: 'start', callback: () => void): void;
 
   /**
    * Register stop event listener.
@@ -804,10 +762,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'stop',
-    callback: () => void
-  ): void;
+  on(eventName: 'stop', callback: () => void): void;
 
   /**
    * Register error listener.
@@ -815,10 +770,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'error',
-    callback: (error: BackgroundGeolocationError) => void
-  ): void;
+  on(eventName: 'error', callback: (error: BackgroundGeolocationError) => void): void;
 
   /**
    * Register authorization listener.
@@ -829,10 +781,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'authorization',
-    callback: (status: AuthorizationStatus) => void
-  ): void;
+  on(eventName: 'authorization', callback: (status: AuthorizationStatus) => void): void;
 
   /**
    * Register foreground event listener.
@@ -842,10 +791,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'foreground',
-    callback: () => void
-  ): void;
+  on(eventName: 'foreground', callback: () => void): void;
 
   /**
    * Register background event listener.
@@ -855,10 +801,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'background',
-    callback: () => void
-  ): void;
+  on(eventName: 'background', callback: () => void): void;
 
   /**
    * Register abort_requested event listener.
@@ -868,10 +811,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'abort_requested',
-    callback: () => void
-  ): void;
+  on(eventName: 'abort_requested', callback: () => void): void;
 
   /**
    * Register http_authorization event listener.
@@ -881,11 +821,7 @@ export interface BackgroundGeolocationPlugin {
    * @param eventName
    * @param callback
    */
-  on(
-    eventName: 'http_authorization',
-    callback: () => void
-  ): void;
-
+  on(eventName: 'http_authorization', callback: () => void): void;
 }
 
 declare const BackgroundGeolocation: BackgroundGeolocationPlugin;

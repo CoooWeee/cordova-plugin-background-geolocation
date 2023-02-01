@@ -14,17 +14,17 @@ var channel = require('cordova/channel');
 var radio = require('./radio');
 var TAG = 'CDVBackgroundGeolocation';
 
-var emptyFnc = function () { };
+var emptyFnc = function () {};
 
 var assert = function (condition, msgArray) {
   if (!condition) {
-      throw new Error(msgArray.join('') || 'Assertion failed');
+    throw new Error(msgArray.join('') || 'Assertion failed');
   }
-}
+};
 
-var assertFnc = function(fnc, msgArray) {
-  assert(typeof (fnc) === 'function', msgArray);
-}
+var assertFnc = function (fnc, msgArray) {
+  assert(typeof fnc === 'function', msgArray);
+};
 
 var eventHandler = function (event) {
   radio(event.name).broadcast(event.payload);
@@ -35,12 +35,12 @@ var errorHandler = function (error) {
 };
 
 var unsubscribeAll = function (channels) {
-  channels.forEach(function(channel) {
+  channels.forEach(function (channel) {
     var topic = radio(channel);
     var callbacks = [].concat.apply([], topic.channels[channel]); // flatten array
     topic.unsubscribe.apply(topic, callbacks);
   });
-}
+};
 
 var BackgroundGeolocation = {
   events: [
@@ -54,7 +54,7 @@ var BackgroundGeolocation = {
     'foreground',
     'background',
     'abort_requested',
-    'http_authorization'
+    'http_authorization',
   ],
 
   DISTANCE_FILTER_PROVIDER: 0,
@@ -84,12 +84,7 @@ var BackgroundGeolocation = {
   TIMEOUT: 3,
 
   configure: function (config, success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'configure',
-      [config]
-    );
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'configure', [config]);
   },
 
   start: function () {
@@ -101,18 +96,12 @@ var BackgroundGeolocation = {
   },
 
   switchMode: function (mode, success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'switchMode', [mode]);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'switchMode', [mode]);
   },
 
   getConfig: function (success, failure) {
     assertFnc(success, [TAG, '#getConfig requires a success callback']);
-    exec(success,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'getConfig', []);
+    exec(success, failure || emptyFnc, 'BackgroundGeolocation', 'getConfig', []);
   },
 
   /**
@@ -120,75 +109,52 @@ var BackgroundGeolocation = {
    */
   getStationaryLocation: function (success, failure) {
     assertFnc(success, [TAG, '#getStationaryLocation requires a success callback']);
-    exec(success,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'getStationaryLocation', []);
+    exec(success, failure || emptyFnc, 'BackgroundGeolocation', 'getStationaryLocation', []);
   },
 
   // @deprecated
   isLocationEnabled: function (success, failure) {
     console.log('[WARN]: ' + TAG + '#isLocationEnabled is deprecated! Use checkStatus instead.');
     assertFnc(success, [TAG, '#isLocationEnabled requires a success callback']);
-    exec(success,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'isLocationEnabled', []);
+    exec(success, failure || emptyFnc, 'BackgroundGeolocation', 'isLocationEnabled', []);
   },
 
   showAppSettings: function () {
-    exec(emptyFnc,
-      emptyFnc,
-      'BackgroundGeolocation',
-      'showAppSettings', []);
+    exec(emptyFnc, emptyFnc, 'BackgroundGeolocation', 'showAppSettings', []);
   },
 
   showLocationSettings: function () {
-    exec(emptyFnc,
-      emptyFnc,
-      'BackgroundGeolocation',
-      'showLocationSettings', []);
+    exec(emptyFnc, emptyFnc, 'BackgroundGeolocation', 'showLocationSettings', []);
   },
 
   getLocations: function (success, failure) {
     assertFnc(success, [TAG, '#getLocations requires a success callback']);
-    exec(success,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'getLocations', []);
+    exec(success, failure || emptyFnc, 'BackgroundGeolocation', 'getLocations', []);
   },
 
   getValidLocations: function (success, failure) {
     assertFnc(success, [TAG, '#getValidLocations requires a success callback']);
-    exec(success,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'getValidLocations', []);
+    exec(success, failure || emptyFnc, 'BackgroundGeolocation', 'getValidLocations', []);
   },
 
   deleteLocation: function (locationId, success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'deleteLocation', [locationId]);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'deleteLocation', [locationId]);
   },
 
   deleteAllLocations: function (success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'deleteAllLocations', []);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'deleteAllLocations', []);
   },
 
-  getCurrentLocation: function(success, failure, options) {
+  getCurrentLocation: function (success, failure, options) {
     options = options || {};
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'getCurrentLocation', [options.timeout, options.maximumAge, options.enableHighAccuracy]);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'getCurrentLocation', [
+      options.timeout,
+      options.maximumAge,
+      options.enableHighAccuracy,
+    ]);
   },
 
-  getLogEntries: function(limit /*, offset = 0, minLevel = "DEBUG", success = emptyFnc, failure = emptyFnc */) {
+  getLogEntries: function (limit /*, offset = 0, minLevel = "DEBUG", success = emptyFnc, failure = emptyFnc */) {
     var acnt = arguments.length;
     var offset, minLevel, success, error;
 
@@ -206,45 +172,27 @@ var BackgroundGeolocation = {
       failure = acnt > 4 && arguments[4] !== undefined ? arguments[4] : emptyFnc;
     }
 
-    exec(success,
-      failure,
-      'BackgroundGeolocation',
-      'getLogEntries', [limit, offset, minLevel]);
+    exec(success, failure, 'BackgroundGeolocation', 'getLogEntries', [limit, offset, minLevel]);
   },
 
   checkStatus: function (success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'checkStatus')
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'checkStatus');
   },
 
   startTask: function (success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'startTask');
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'startTask');
   },
 
   endTask: function (taskKey, success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'endTask', [taskKey]);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'endTask', [taskKey]);
   },
 
   headlessTask: function (func, success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'registerHeadlessTask', [func.toString()]);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'registerHeadlessTask', [func.toString()]);
   },
 
   forceSync: function (success, failure) {
-    exec(success || emptyFnc,
-      failure || emptyFnc,
-      'BackgroundGeolocation',
-      'forceSync', []);
+    exec(success || emptyFnc, failure || emptyFnc, 'BackgroundGeolocation', 'forceSync', []);
   },
 
   on: function (event, callbackFn) {
@@ -254,7 +202,7 @@ var BackgroundGeolocation = {
     return {
       remove: function () {
         radio(event).unsubscribe(callbackFn);
-      }
+      },
     };
   },
 
@@ -268,17 +216,12 @@ var BackgroundGeolocation = {
       return void 0;
     }
     unsubscribeAll([event]);
-  }
+  },
 };
 
 channel.deviceready.subscribe(function () {
   // register app global listeners
-  exec(eventHandler,
-    errorHandler,
-    'BackgroundGeolocation',
-    'addEventListener'
-  );
+  exec(eventHandler, errorHandler, 'BackgroundGeolocation', 'addEventListener');
 });
-
 
 module.exports = BackgroundGeolocation;
